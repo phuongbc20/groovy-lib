@@ -3,6 +3,7 @@
 import com.phuongdoan.Docker
 import com.phuongdoan.Git
 import com.phuongdoan.Constants
+import com.phuongdoan.Slack
 
 pipeline {
     agent {
