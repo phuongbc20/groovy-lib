@@ -1,4 +1,4 @@
-import com.mycompany.colinbut.DockerEcr
+import com.phuongdoan.DockerEcr
 
 /**
  * Usage:

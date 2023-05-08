@@ -1,4 +1,4 @@
-package com.mycompany.colinbut
+package com.phuongdoan
 
 class Git implements Serializable {
 

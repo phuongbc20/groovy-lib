@@ -1,5 +1,5 @@
-import com.mycompany.colinbut.DockerEcr
-import com.mycompany.colinbut.Git
+import com.phuongdoan.DockerEcr
+import com.phuongdoan.Git
 
 def call(Map args=[:]) {
     node {

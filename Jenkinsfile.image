@@ -1,0 +1,25 @@
+@Library('mylibrary') _
+
+import com.phuongdoan.Docker
+import com.phuongdoan.Git
+import com.phuongdoan.Constants
+
+pipeline {
+    agent any
+    environment {
+        DOCKER_HUB_PASSWORD = credentials('docker_hub_password')
+        MICROSERVICE_NAME = 'microservice'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    def git = new Git(this)
+                    def Docker = new Docker(this)
+                    Docker.buildDockerImage(environment.MICROSERVICE_NAME)
+                    Docker.publishDockerImageToECR(environment.MICROSERVICE_NAME)
+                }
+            }
+        }
+    }
+}

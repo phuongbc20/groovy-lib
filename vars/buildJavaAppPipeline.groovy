@@ -1,4 +1,4 @@
-import com.mycompany.colinbut.Git
+import com.phuongdoan.Git
 
 def call(Map args) {
     node {

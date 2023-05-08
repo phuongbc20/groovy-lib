@@ -1,5 +1,5 @@
-import com.mycompany.colinbut.Constants
-import com.mycompany.colinbut.DockerEcr
+import com.phuongdoan.Constants
+import com.phuongdoan.DockerEcr
 
 def call(Map args) {
     node {

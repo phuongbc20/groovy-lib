@@ -1,4 +1,4 @@
-import com.mycompany.colinbut.Constants
+import com.phuongdoan.Constants
 
 def call(Map config=[:]) {
     if (config.type == "slack") {

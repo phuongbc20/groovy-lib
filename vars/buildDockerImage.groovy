@@ -1,4 +1,4 @@
-import com.mycompany.colinbut.DockerEcr
+import com.phuongdoan.DockerEcr
 
 def call(Map args, Closure body={}) {
     node {
