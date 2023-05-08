@@ -4,7 +4,7 @@ class Slack implements Serializable {
 
     private final def script
 
-    static final String slackHook = "https://hooks.slack.com/services/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"
+    static final String slackHook = "https://hooks.slack.com/services/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"
 
     Slack(def script) {
         this.script = script
