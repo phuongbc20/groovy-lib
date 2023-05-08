@@ -7,17 +7,27 @@ import com.phuongdoan.Constants
 pipeline {
     agent any
     environment {
-        DOCKER_HUB_PASSWORD = credentials('docker_hub_password')
-        MICROSERVICE_NAME = 'microservice'
+        DOCKER_HUB_PASSWORD = credentials('dockerhub')
+        MICROSERVICE_NAME = 'flutter-apk'
     }
     stages {
         stage('Build') {
             steps {
                 script {
+                    stage('Checkout') {
+                        git credentialsId: Constants.JENKINS_GITHUB_CREDENTIALS_ID, url: "http://gerrit-phuong.stg.cdgfossil.com/a/flutter-app"
+                    }
                     def git = new Git(this)
                     def Docker = new Docker(this)
-                    Docker.buildDockerImage(environment.MICROSERVICE_NAME)
-                    Docker.publishDockerImageToECR(environment.MICROSERVICE_NAME)
+                    stage('Build') {
+                        Docker.buildDockerImage(environment.MICROSERVICE_NAME)
+                    }
+                    stage('Login to Docker Hub') {
+                        Docker.loginToDockerHub(environment.DOCKER_HUB_PASSWORD)
+                    }
+                    stage('Publish Docker Image') {
+                        Docker.publishDockerImageToECR(environment.MICROSERVICE_NAME)
+                    }
                 }
             }
         }
