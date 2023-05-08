@@ -26,12 +26,12 @@ class Slack implements Serializable {
         } else {
             script.sh("""
                 echo ${status}
-                export DATE=$(TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T")
-                export JSON=$(jq --null-input \
+                export DATE=`TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T"`
+                export JSON=`jq --null-input \
                 --arg text "${BUILD_URL}" \
                 --arg color "#FF0000" \
                 --arg title "${JOB_NAME} | ${DATE}" \
-                '{"attachments": [ { "text": $text, "color": $color, "title": $title } ] }')
+                '{"attachments": [ { "text": $text, "color": $color, "title": $title } ] }'`
                 curl -H "Content-Type:application/json" -X POST --data "${JSON}" ${slackHook}
             """
             )
