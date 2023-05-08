@@ -13,14 +13,15 @@ class Slack implements Serializable {
     void post(String status) {
         if (status == "SUCCESS") {
             String date = script.sh(returnStdout: true, script: 'TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T"').trim()
-            String json = script.sh(returnStdout: true, script: """
-                jq --null-input \
-                --arg text "${script.env.BUILD_URL}" \
-                --arg color "#4BB543" \
-                --arg title "${script.env.JOB_NAME} | ${date}" \
-                '{"attachments": [ { "text": ${script.env.text}, "color": ${script.env.color}, "title": ${script.env.title} } ] }'
-            """).trim()
-
+            String message = '{"attachments": [ { "text": "URL", "color": #4BB543, "title": "title" } ] }'
+            // String json = script.sh(returnStdout: true, script: """
+            //     jq --null-input \
+            //     --arg text "${script.env.BUILD_URL}" \
+            //     --arg color "#4BB543" \
+            //     --arg title "${script.env.JOB_NAME} | ${date}" \
+            //     '{"attachments": [ { "text": ${text}, "color": ${color}, "title": ${title} } ] }'
+            // """).trim()
+            script.sh('curl -H \"Content-Type:application/json\" -X POST --data ${message} ${slackHook}"')
             script.sh("""
                 echo ${status}
                 echo ${date}
