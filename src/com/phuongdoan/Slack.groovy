@@ -21,7 +21,7 @@ class Slack implements Serializable {
             //     --arg title "${script.env.JOB_NAME} | ${date}" \
             //     '{"attachments": [ { "text": ${text}, "color": ${color}, "title": ${title} } ] }'
             // """).trim()
-            script.sh('curl -H \"Content-Type:application/json\" -X POST --data "${message}" ${slackHook}"')
+            script.sh('curl -H "Content-Type:application/json" -X POST --data "${message}" ${slackHook}"')
             script.sh("""
                 echo ${status}
                 echo ${date}
