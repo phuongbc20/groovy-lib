@@ -16,9 +16,9 @@ class Slack implements Serializable {
                 echo ${status}
                 export DATE=`TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T"`
                 export JSON=`jq --null-input \
-                --arg text "${BUILD_URL}" \
+                --arg text "${script.env.BUILD_URL}" \
                 --arg color "#4BB543" \
-                --arg title "${JOB_NAME} | ${DATE}" \
+                --arg title "${script.env.JOB_NAME} | ${DATE}" \
                 '{"attachments": [ { "text": $text, "color": $color, "title": $title } ] }'`
                 curl -H "Content-Type:application/json" -X POST --data "${JSON}" ${slackHook}
             """
@@ -28,9 +28,9 @@ class Slack implements Serializable {
                 echo ${status}
                 export DATE=`TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T"`
                 export JSON=`jq --null-input \
-                --arg text "${BUILD_URL}" \
+                --arg text "${script.env.BUILD_URL}" \
                 --arg color "#FF0000" \
-                --arg title "${JOB_NAME} | ${DATE}" \
+                --arg title "${script.env.JOB_NAME} | ${DATE}" \
                 '{"attachments": [ { "text": $text, "color": $color, "title": $title } ] }'`
                 curl -H "Content-Type:application/json" -X POST --data "${JSON}" ${slackHook}
             """
