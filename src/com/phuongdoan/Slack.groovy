@@ -14,7 +14,7 @@ class Slack implements Serializable {
         if (status == "SUCCESS") {
             script.sh("""
                 echo ${status}
-                export DATE=`TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T"`
+                export DATE=`TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T"` && \
                 echo $DATE
     
             """)
