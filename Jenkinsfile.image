@@ -14,10 +14,10 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    stage('Checkout') {
-                        git credentialsId: Constants.JENKINS_GITHUB_CREDENTIALS_ID, url: "http://gerrit-phuong.stg.cdgfossil.com/a/flutter-app"
-                    }
                     def git = new Git(this)
+                    stage('Checkout') {
+                        git.checkout('flutter-example')
+                    }
                     def Docker = new Docker(this)
                     stage('Build') {
                         Docker.buildDockerImage(environment.MICROSERVICE_NAME)

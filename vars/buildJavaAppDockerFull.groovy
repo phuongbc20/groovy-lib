@@ -4,7 +4,7 @@ import com.phuongdoan.DockerEcr
 def call(Map args) {
     node {
         stage("Checkout") {
-            git credentialsId: Constants.JENKINS_GITHUB_CREDENTIALS_ID, url: "https://github.com/colinbut/${args.repo}.git"
+            git credentialsId: Constants.JENKINS_GITHUB_CREDENTIALS_ID, url: "https://github.com/colinbut/${args.repo}.git", branch: "main"
         }
 
         stage("Compile") {
