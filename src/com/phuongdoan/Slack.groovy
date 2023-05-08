@@ -20,7 +20,7 @@ class Slack implements Serializable {
                 --arg color "#4BB543" \
                 --arg title "${script.env.JOB_NAME} |" \
                 '{"attachments": [ { "text": $text, "color": $color, "title": $title } ] }'`
-                curl -H "Content-Type:application/json" -X POST --data "${JSON}" ${slackHook}
+                echo ${JSON}
             """)
         } else {
             script.sh("""
