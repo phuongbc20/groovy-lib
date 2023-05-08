@@ -19,7 +19,7 @@ class Slack implements Serializable {
 
             script.sh("""
                 echo ${status}
-                echo ${DATE}
+                echo ${date}
             """)
         } else {
             script.sh("""
