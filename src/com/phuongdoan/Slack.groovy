@@ -18,7 +18,7 @@ class Slack implements Serializable {
                 --arg text "${script.env.BUILD_URL}" \
                 --arg color "#4BB543" \
                 --arg title "${script.env.JOB_NAME} | ${date}" \
-                '{"attachments": [ { "text": $text, "color": $color, "title": $title } ] }'
+                '{"attachments": [ { "text": ${script.env.text}, "color": ${script.env.color}, "title": ${script.env.title} } ] }'
             """).trim()
 
             script.sh("""
