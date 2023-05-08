@@ -12,11 +12,7 @@ class Slack implements Serializable {
 
     void post(String status) {
         if (status == "SUCCESS") {
-            String date = script.sh(returnStdout: true, script: """
-                export DATE=`TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T"`
-                echo $DATE
-            """).trim()
-
+            String date = script.sh(returnStdout: true, script: 'TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T"').trim()
             script.sh("""
                 echo ${status}
                 echo ${date}
