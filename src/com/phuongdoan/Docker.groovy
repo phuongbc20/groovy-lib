@@ -6,7 +6,6 @@ class Docker implements Serializable {
 
     static final String dockerUser = "phuongbc20"
     static final String dockerRegistryIdentifier = "phuongbc20"
-    static final String dockerRegistryUrl = "https://${dockerRegistryIdentifier}"
 
     Docker(def script) {
         this.script = script

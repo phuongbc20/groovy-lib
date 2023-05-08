@@ -10,7 +10,7 @@ pipeline {
     }
     environment {
         DOCKER_HUB_PASSWORD = credentials('dockerhub')
-        MICROSERVICE_NAME = 'flutter-app'
+        IMAGE_NAME = 'flutter-app'
     }
     stages {
         stage('Build') {
@@ -18,19 +18,33 @@ pipeline {
                 script {
                     def git = new Git(this)
                     stage('Checkout') {
-                        git.checkout('flutter-app')
+                        git.checkout(env.IMAGE_NAME)
                     }
                     def Docker = new Docker(this)
                     stage('Build') {
-                        Docker.buildDockerImage(environment.MICROSERVICE_NAME)
+                        Docker.buildDockerImage(env.IMAGE_NAME)
                     }
                     stage('Login to Docker Hub') {
-                        Docker.loginToDockerHub(environment.DOCKER_HUB_PASSWORD)
+                        Docker.loginToDockerHub(env.DOCKER_HUB_PASSWORD)
                     }
                     stage('Publish Docker Image') {
-                        Docker.publishDockerImageToECR(environment.MICROSERVICE_NAME)
+                        Docker.publishDockerImageToECR(env.IMAGE_NAME)
                     }
                 }
+            }
+        }
+    }
+    post {
+        success {
+            script {
+                def slack = new Slack(this)
+                slack.post(currentBuild.currentResult.toString())
+            }
+        }
+        failure {
+            script {
+                def slack = new Slack(this)
+                slack.post(currentBuild.currentResult.toString())
             }
         }
     }
