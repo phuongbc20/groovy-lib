@@ -5,10 +5,12 @@ import com.phuongdoan.Git
 import com.phuongdoan.Constants
 
 pipeline {
-    agent any
+    agent {
+        label 'build-image'
+    }
     environment {
         DOCKER_HUB_PASSWORD = credentials('dockerhub')
-        MICROSERVICE_NAME = 'flutter-apk'
+        MICROSERVICE_NAME = 'flutter-app'
     }
     stages {
         stage('Build') {
@@ -16,7 +18,7 @@ pipeline {
                 script {
                     def git = new Git(this)
                     stage('Checkout') {
-                        git.checkout('flutter-example')
+                        git.checkout('flutter-app')
                     }
                     def Docker = new Docker(this)
                     stage('Build') {

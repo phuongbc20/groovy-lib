@@ -9,7 +9,7 @@ class Git implements Serializable {
     }
 
     def checkout(String repo) {
-        this.script.git credentialsId: Constants.JENKINS_GITHUB_CREDENTIALS_ID, url: "https://github.com/phuongbc20/${repo}.git", branch: "main"
+        this.script.git credentialsId: Constants.JENKINS_GITHUB_CREDENTIALS_ID, url: "http://gerrit-phuong.stg.cdgfossil.com/a/${repo}", branch: "main"
     }
 
     String commitHash() {
