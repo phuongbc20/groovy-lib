@@ -15,12 +15,9 @@ class Docker {
         script.sh("echo ${dockerHubPassword} | docker login -u ${dockerUser} --password-stdin")
     }
 
-    void buildDockerImage(Map config = [:]) {
-        for (String key : config.keySet()) {
-            script.sh("export ${key}=${config[key]}")
-        }
-        // def git = new Git(this.script)
-        // script.sh("docker build -t ${dockerRegistryIdentifier}/${imageName}:${git.commitHash()} -t ${dockerRegistryIdentifier}/${imageName}:latest .")
+    void buildDockerImage(String imageName) {
+        def git = new Git(this.script)
+        script.sh("docker build -t ${dockerRegistryIdentifier}/${imageName}:${git.commitHash()} -t ${dockerRegistryIdentifier}/${imageName}:latest .")
     }
 
     void publishDockerImage(String imageName) {
