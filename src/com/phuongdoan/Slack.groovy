@@ -10,9 +10,9 @@ class Slack implements Serializable {
 
     void post(String status) {
         String color = "danger"
-        
+
         if (status == "SUCCESS") {
-            String color = "good"
+            color = "good"
         }
 
         String date = script.sh(returnStdout: true, script: 'TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T"').trim()
