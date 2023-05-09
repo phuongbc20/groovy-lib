@@ -11,6 +11,7 @@ pipeline {
     }
     environment {
         DOCKER_HUB_PASSWORD = credentials('dockerhub')
+        REPO_NAME = 'flutter-app'
         IMAGE_NAME = 'flutter-app'
     }
     stages {
@@ -19,7 +20,7 @@ pipeline {
                 script {
                     def git = new Git(this)
                     stage('Checkout') {
-                        git.checkout(env.IMAGE_NAME)
+                        git.checkout(env.REPO_NAME)
                     }
                     def Docker = new Docker(this)
                     stage('Build') {

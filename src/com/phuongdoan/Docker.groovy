@@ -1,6 +1,6 @@
 package com.phuongdoan
 
-class Docker implements Serializable {
+class Docker {
 
     private final def script
 

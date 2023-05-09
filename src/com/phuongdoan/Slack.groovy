@@ -1,6 +1,6 @@
 package com.phuongdoan
 
-class Slack implements Serializable {
+class Slack {
 
     private final def script
 

@@ -1,6 +1,6 @@
 package com.phuongdoan
 
-class Git implements Serializable {
+class Git {
 
     private final def script
 
