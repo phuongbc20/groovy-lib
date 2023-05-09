@@ -42,5 +42,11 @@ pipeline {
                 slack.post(currentBuild.currentResult.toString())
             }
         }
+        success {
+            script {
+                def git = new Git(this)
+                git.gerritReview()
+            }
+        }
     }
 }

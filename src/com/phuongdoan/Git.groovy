@@ -19,4 +19,9 @@ class Git {
     private static String getLatestGitCommitHashCommand() {
         return "git rev-parse HEAD"
     }
+
+    def gerritReview() {
+        this.gerritReview gerritReview labels: ['Presubmit-Verified': 1], message: "Build succeeded ${script.env.BUILD_URL}"
+    }
+
 }
