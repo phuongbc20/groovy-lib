@@ -28,6 +28,6 @@ class Docker {
 
     void runDockerImage(String imageName, String command) {
         def git = new Git(this.script)
-        script.sh("docker run --tty --rm -v $(pwd):/build ${dockerRegistryIdentifier}/${imageName}:latest ${command}")
+        script.sh("docker run --tty --rm -v \$(pwd):/build ${dockerRegistryIdentifier}/${imageName}:latest ${command}")
     }
 }
