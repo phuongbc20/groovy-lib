@@ -16,8 +16,10 @@ class Docker {
     }
 
     void buildDockerImage(Map config = [:]) {
-        script.sh("echo ${config}")
-        def git = new Git(this.script)
+        for (String key : config.keySet()) {
+            script.sh("export ${key}=${config[key]}")
+        }
+        // def git = new Git(this.script)
         // script.sh("docker build -t ${dockerRegistryIdentifier}/${imageName}:${git.commitHash()} -t ${dockerRegistryIdentifier}/${imageName}:latest .")
     }
 
