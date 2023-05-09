@@ -11,15 +11,23 @@ class Slack implements Serializable {
     }
 
     void post(String status) {
-        if (status == "SUCCESS") {
+        // if (status == "SUCCESS") {
             // String date = script.sh(returnStdout: true, script: 'TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T"').trim()
             // String message = "{\"attachments\": [ { \"text\": \"URL\", \"color\": #4BB543, \"title\": \"title\" } ] }"
+        def attachments = [
+        [
+            text: 'I find your lack of faith disturbing!',
+            fallback: 'Hey, Vader seems to be mad at you.',
+            color: '#ff0000'
+        ]
+        ]
 
-            slackSend(color: "good", message: "Message from Jenkins Pipeline", channel: "#alert")            
-        } else {
-            script.sh("""
-            echo ${status}
-            """)
+        slackSend(channel: "#alert", attachments: attachments)
+            // slackSend(color: "good", message: "Message from Jenkins Pipeline", channel: "#alert")            
+        // } else {
+        //     script.sh("""
+        //     echo ${status}
+        //     """)
             // script.sh("""
             //     echo ${status}
             //     export DATE=`TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T"`
@@ -31,7 +39,7 @@ class Slack implements Serializable {
             //     curl -H "Content-Type:application/json" -X POST --data "${JSON}" ${slackHook}
             // """
             // )
-        }
+        // }
     }
 
     // void buildDockerImage(String microserviceName) {
