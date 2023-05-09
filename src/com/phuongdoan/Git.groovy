@@ -21,11 +21,11 @@ class Git {
     }
 
     def gerritReview(String status) {
-        int verified = -1
+        String verified = "-1"
         if (status == "SUCCESS") {
-            verified = 1
+            verified = "1"
         }
-        this.script.gerritReview labels: ['Presubmit-Verified': 1], message: "BUILD ${status} ${script.env.BUILD_URL}"
+        this.script.gerritReview labels: ['Presubmit-Verified': verified], message: "BUILD ${status} ${script.env.BUILD_URL}"
     }
 
 }
