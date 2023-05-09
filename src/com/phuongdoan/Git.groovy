@@ -21,7 +21,7 @@ class Git {
     }
 
     def gerritReview() {
-        this.gerritReview(labels: ['Presubmit-Verified': 1], message: "Build succeeded ${script.env.BUILD_URL}")
+        this.script.gerritReview labels: ['Presubmit-Verified': 1], message: "Build succeeded ${script.env.BUILD_URL}"
     }
 
 }
