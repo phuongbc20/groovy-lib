@@ -12,10 +12,10 @@ class Slack implements Serializable {
 
     void post(String status) {
         if (status == "SUCCESS") {
-            String date = script.sh(returnStdout: true, script: 'TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T"').trim()
+            // String date = script.sh(returnStdout: true, script: 'TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T"').trim()
             // String message = "{\"attachments\": [ { \"text\": \"URL\", \"color\": #4BB543, \"title\": \"title\" } ] }"
 
-            slackSend (color: "#4BB543", message: date)            
+            slackSend (color: "good", message: "Message from Jenkins Pipeline")            
         } else {
             script.sh("""
             echo ${status}
