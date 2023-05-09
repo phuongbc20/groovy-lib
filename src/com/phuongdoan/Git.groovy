@@ -21,9 +21,9 @@ class Git {
     }
 
     def gerritReview(String status) {
-        String verified = "-1"
+        Integer verified = -1
         if (status == "SUCCESS") {
-            verified = "1"
+            verified = 1
         }
         this.script.gerritReview labels: ['Presubmit-Verified': verified], message: "BUILD ${status} ${script.env.BUILD_URL}"
     }
