@@ -20,8 +20,12 @@ class Git {
         return "git rev-parse HEAD"
     }
 
-    def gerritReview() {
-        this.script.gerritReview labels: ['Presubmit-Verified': 1], message: "Build succeeded ${script.env.BUILD_URL}"
+    def gerritReview(String status) {
+        int verified = -1
+        if (status == "SUCCESS") {
+            verified = 1
+        }
+        this.script.gerritReview labels: ['Presubmit-Verified': ${verified}], message: "BUILD ${status} ${script.env.BUILD_URL}"
     }
 
 }
