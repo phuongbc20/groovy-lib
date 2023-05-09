@@ -15,7 +15,7 @@ class Slack implements Serializable {
             // String date = script.sh(returnStdout: true, script: 'TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T"').trim()
             // String message = "{\"attachments\": [ { \"text\": \"URL\", \"color\": #4BB543, \"title\": \"title\" } ] }"
 
-            slackSend (color: "good", message: "Message from Jenkins Pipeline")            
+            slackSend (color: "good", message: "Message from Jenkins Pipeline", channel: "#alert")            
         } else {
             script.sh("""
             echo ${status}
