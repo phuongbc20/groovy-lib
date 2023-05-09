@@ -14,6 +14,13 @@ pipeline {
         REPO_NAME = 'flutter-app'
         IMAGE_NAME = 'flutter-apk'
     }
+    parameters {
+        string(name: 'FLUTTER_VERSION', defaultValue: '3.7.12', description: 'Flutter version')
+        string(name: 'COMMANDLINETOOLS_VERSION', defaultValue: '9477386', description: 'Commandlinetools version number')
+        string(name: 'PLATFORMS_VERSION', defaultValue: '33', description: 'Android platforms version')
+        string(name: 'BUILD_TOOLS_VERSION', defaultValue: '30.0.3', description: 'Android build tools version ')
+        string(name: 'CMDLINE_TOOLS_VERSION', defaultValue: '9.0', description: 'Cmdline tools version')
+    }
     stages {
         stage('Build') {
             steps {
@@ -28,7 +35,7 @@ pipeline {
                         git.checkout(env.REPO_NAME)
                     }
                     stage('Build') {
-                        Docker.buildDockerImage(env.IMAGE_NAME)
+                        Docker.buildDockerImage(env.IMAGE_NAME, params.FLUTTER_VERSION, params.COMMANDLINETOOLS_VERSION, params.PLATFORMS_VERSION, params.BUILD_TOOLS_VERSION, params.CMDLINE_TOOLS_VERSION)
                     }
                     stage('Login to Docker Hub') {
                         Docker.loginToDockerHub(env.DOCKER_HUB_PASSWORD)

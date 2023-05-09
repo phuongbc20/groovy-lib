@@ -15,7 +15,8 @@ class Docker {
         script.sh("echo ${dockerHubPassword} | docker login -u ${dockerUser} --password-stdin")
     }
 
-    void buildDockerImage(String imageName) {
+    void buildDockerImage(String imageName, Map config = [:]) {
+        script.sh("echo ${config}")
         def git = new Git(this.script)
         script.sh("docker build -t ${dockerRegistryIdentifier}/${imageName}:${git.commitHash()} -t ${dockerRegistryIdentifier}/${imageName}:latest .")
     }
