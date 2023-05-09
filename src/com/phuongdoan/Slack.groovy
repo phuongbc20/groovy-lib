@@ -14,15 +14,9 @@ class Slack implements Serializable {
         // if (status == "SUCCESS") {
             // String date = script.sh(returnStdout: true, script: 'TZ=":Asia/Ho_Chi_Minh" date "+%Y-%m-%d %T"').trim()
             // String message = "{\"attachments\": [ { \"text\": \"URL\", \"color\": #4BB543, \"title\": \"title\" } ] }"
-        def attachments = [
-        [
-            text: 'I find your lack of faith disturbing!',
-            fallback: 'Hey, Vader seems to be mad at you.',
-            color: '#ff0000'
-        ]
-        ]
 
-        slackSend(channel: "#alert", attachments: attachments)
+        slackSend channel: "alert", color: 'good', message: "I've updated the infrastructure on platform"
+        // slackSend(channel: "#alert", attachments: attachments)
             // slackSend(color: "good", message: "Message from Jenkins Pipeline", channel: "#alert")            
         // } else {
         //     script.sh("""
