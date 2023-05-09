@@ -36,13 +36,13 @@ pipeline {
                         git.checkout(env.REPO_NAME)
                     }
                     stage('Build') {
-                        Docker.buildDockerImage(env.IMAGE_NAME, params.FLUTTER_VERSION, params.COMMANDLINETOOLS_VERSION, params.PLATFORMS_VERSION, params.BUILD_TOOLS_VERSION, params.CMDLINE_TOOLS_VERSION)
+                        Docker.buildDockerImage(env.IMAGE_NAME)
                     }
                     stage('Login to Docker Hub') {
-                        Docker.loginToDockerHub(env.DOCKER_HUB_PASSWORD)
+                        Docker.loginToDockerHub(env.DOCKER_HUB_PASSWORD, FLUTTER_VERSION: params.FLUTTER_VERSION, COMMANDLINETOOLS_VERSION: params.COMMANDLINETOOLS_VERSION, PLATFORMS_VERSION: params.PLATFORMS_VERSION)
                     }
                     stage('Publish Docker Image') {
-                        Docker.publishDockerImageToECR(env.IMAGE_NAME)
+                        Docker.publishDockerImage(env.IMAGE_NAME)
                     }
                 }
             }
