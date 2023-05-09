@@ -27,5 +27,4 @@ class Git {
         }
         this.script.gerritReview labels: ['Presubmit-Verified': verified], message: "BUILD ${status} ${script.env.BUILD_URL}"
     }
-
 }

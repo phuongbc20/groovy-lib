@@ -20,14 +20,14 @@ pipeline {
             steps {
                 script {
                     def workspace = new Workspace(this)
+                    def git = new Git(this)
+                    def Docker = new Docker(this)
                     stage('Clear Workspace') {
                         workspace.clear()
                     }
-                    def git = new Git(this)
                     stage('Checkout') {
                         git.checkout(env.REPO_NAME)
                     }
-                    def Docker = new Docker(this)
                     stage('Build Apk') {
                         Docker.runDockerImage(env.IMAGE_NAME, env.COMMAND_BUILD)
                     }
