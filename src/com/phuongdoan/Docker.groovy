@@ -15,13 +15,19 @@ class Docker {
         script.sh("echo ${dockerHubPassword} | docker login -u ${dockerUser} --password-stdin")
     }
 
-    void buildDockerImage(String microserviceName) {
+    void buildDockerImage(String imageName) {
         def git = new Git(this.script)
-        script.sh("docker build -t ${dockerRegistryIdentifier}/${microserviceName}:${git.commitHash()} .")
+        script.sh("docker build -t ${dockerRegistryIdentifier}/${imageName}:${git.commitHash()} -t ${dockerRegistryIdentifier}/${imageName}:latest .")
     }
 
-    void publishDockerImageToECR(String microserviceName) {
+    void publishDockerImage(String imageName) {
         def git = new Git(this.script)
-        script.sh("docker push ${dockerRegistryIdentifier}/${microserviceName}:${git.commitHash()}")
+        script.sh("docker push ${dockerRegistryIdentifier}/${imageName}:${git.commitHash()}")
+        script.sh("docker push ${dockerRegistryIdentifier}/${imageName}:latest")
+    }
+
+    void runDockerImage(String imageName, String command) {
+        def git = new Git(this.script)
+        script.sh("docker run --tty --rm -v $(pwd):/build ${dockerRegistryIdentifier}/${imageName}:latest ${command}")
     }
 }
