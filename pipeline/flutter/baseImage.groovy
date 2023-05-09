@@ -12,7 +12,7 @@ pipeline {
     environment {
         DOCKER_HUB_PASSWORD = credentials('dockerhub')
         REPO_NAME = 'flutter-app'
-        IMAGE_NAME = 'flutter-app'
+        IMAGE_NAME = 'flutter-apk'
     }
     stages {
         stage('Build') {

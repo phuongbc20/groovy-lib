@@ -11,7 +11,7 @@ pipeline {
     }
     environment {
         REPO_NAME = 'flutter-app'
-        IMAGE_NAME = 'flutter-app'
+        IMAGE_NAME = 'flutter-apk'
         COMMAND_BUILD = 'flutter build apk'
     }
     stages {
