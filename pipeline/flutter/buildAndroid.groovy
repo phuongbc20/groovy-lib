@@ -40,12 +40,8 @@ pipeline {
             script {
                 def slack = new Slack(this)
                 slack.post(currentBuild.currentResult.toString())
-            }
-        }
-        success {
-            script {
                 def git = new Git(this)
-                git.gerritReview()
+                git.gerritReview(currentBuild.currentResult.toString())
             }
         }
     }
