@@ -39,7 +39,7 @@ pipeline {
                         Docker.buildDockerImage(env.IMAGE_NAME)
                     }
                     stage('Login to Docker Hub') {
-                        Docker.loginToDockerHub(env.DOCKER_HUB_PASSWORD, FLUTTER_VERSION: params.FLUTTER_VERSION, COMMANDLINETOOLS_VERSION: params.COMMANDLINETOOLS_VERSION, PLATFORMS_VERSION: params.PLATFORMS_VERSION)
+                        Docker.loginToDockerHub(env.DOCKER_HUB_PASSWORD)
                     }
                     stage('Publish Docker Image') {
                         Docker.publishDockerImage(env.IMAGE_NAME)
