@@ -16,6 +16,7 @@ class Docker {
     }
 
     void buildDockerImage(String imageName) {
+        def git = new Git(this.script)
         script.sh("docker build -t ${dockerRegistryIdentifier}/${imageName}:${git.commitHash()} -t ${dockerRegistryIdentifier}/${imageName}:latest .")
     }
 

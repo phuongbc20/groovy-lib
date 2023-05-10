@@ -8,7 +8,7 @@ import com.phuongdoan.Workspace
 
 pipeline {
     agent {
-        label 'build-image'
+        label 'mac-os'
     }
     environment {
         DOCKER_HUB_PASSWORD = credentials('dockerhub')
